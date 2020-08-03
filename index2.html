@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lesson 15 task 2</title>
+</head>
+<body>
+<script>
+    // У объекта data создать свойство геттер `model` и сеттер `model`. Которое обрабатывает  данные после двух обращений.
+    //     При первом обращении сохраняется строка. Например: `data.model = 'Hello, how, are you?'`
+    // При втором обращении к сеттеру происходит нарезание строки по переданному символу и сохранение результата в свойство str. Например: `data.model = ","`
+    //     `console.log(data.str) -> ['Hello', ' how', ' are you?']`
+    // ----------------------
+    //     Геттер `data.model` возвращает символы, которые были удалены (при втором вызове сеттера) и их количество в виде объекта.
+    //     `console.log(data.model); -> { symbol: ',', count: 2 }`
+
+
+    let data = {
+
+        get model (){
+            let someObj={};
+            someObj.symbol=this.symbol;
+            someObj.count=this.str.length-1;
+            return someObj
+        },
+        set model(value){
+            if(!this.str){
+                this.str=value
+            }
+            else {
+                this.str=this.str.split(value);
+                this.symbol=value;
+            }
+
+        },
+    };
+    data.model='Lorem ipsum, dolor sit amet, consectetur, adipisicing elit. Accusamus, consequatur, doloribus';
+    console.log(data.str);
+    data.model=',';
+    console.log(data.str);
+    console.log(data.model);
+
+
+</script>
+</body>
+</html>
